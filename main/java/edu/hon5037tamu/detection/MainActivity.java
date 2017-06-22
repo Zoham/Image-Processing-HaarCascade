@@ -1,6 +1,5 @@
 package edu.hon5037tamu.detection;
 
-import android.content.Context;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,19 +15,14 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-
 import static edu.hon5037tamu.detection.OpencvClass.faceDetection;
 
 public class MainActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static String TAG = "MainActivity";
     JavaCameraView javaCameraView;
     Mat mRgba;
+    Mat Ret;
 
-    InputStream is;
-    FileOutputStream os;
 
     static {
 
@@ -104,13 +98,13 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
 
         System.out.println("New Frameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         mRgba = inputFrame.rgba();
-
         try
         {
             String path = getFilesDir().getAbsolutePath();
             System.out.println(path);
 
-            faceDetection("/storage/emulated/0/assets/haarcascade_frontalface_alt.xml", mRgba.getNativeObjAddr());
+            mRgba= faceDetection("/storage/emulated/0/assets/haarcascade_frontalface_alt2.xml", mRgba.getNativeObjAddr());
+            mRgba= faceDetection("/storage/emulated/0/assets/haarcascade_eye_tree_eyeglasses.xml", mRgba.getNativeObjAddr());
         }
         catch(Exception E)
         {
@@ -120,4 +114,6 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         System.out.println("End Frameeeeeeeeeeeeeeeeeeeeeeeee");
         return mRgba;
     }
+
+
 }

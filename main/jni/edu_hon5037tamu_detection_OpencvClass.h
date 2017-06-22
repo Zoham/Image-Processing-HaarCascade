@@ -3,6 +3,7 @@
 #include "opencv2/opencv.hpp"
 #include <stdio.h>
 #include <android/log.h>
+/* Header for class edu_hon5037tamu_detection_OpencvClass */
 
 using namespace cv;
 using namespace std;
@@ -23,7 +24,7 @@ extern "C" {
  */
  void detect(Mat& frame);
 
-JNIEXPORT void JNICALL Java_edu_hon5037tamu_detection_OpencvClass_faceDetection
+JNIEXPORT Mat& JNICALL Java_edu_hon5037tamu_detection_OpencvClass_faceDetection
   (JNIEnv *, jclass,jstring, jlong);
 
 #ifdef __cplusplus
